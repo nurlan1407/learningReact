@@ -1,15 +1,15 @@
-import React, {Suspense} from "react";
+import React, { Suspense } from 'react';
 
-const AboutPage = React.lazy(()=>import('./aboutPage'))
+const AboutPage = React.lazy(() => import('./aboutPage'));
 
-const AboutPageAsync = () =>{
-    return(
-        <div>
-            <Suspense fallback={<div>Loading...</div>}>
-                <AboutPage/>
-            </Suspense>
-        </div>
-    )
+function AboutPageAsync() {
+  return (
+      <div>
+          <Suspense fallback={<div>Loading...</div>}>
+              <AboutPage />
+          </Suspense>
+      </div>
+  );
 }
 
-export default AboutPageAsync
+export default AboutPageAsync;
