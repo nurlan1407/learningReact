@@ -1,15 +1,8 @@
-import React, { Suspense } from 'react';
+import React from 'react';
 
-const AboutPage = React.lazy(() => import('./aboutPage'));
-
-function AboutPageAsync() {
-  return (
-      <div>
-          <Suspense fallback={<div>Loading...</div>}>
-              <AboutPage />
-          </Suspense>
-      </div>
-  );
-}
+export const AboutPageAsync = React.lazy(() => new Promise((resolve) => {
+  // @ts-ignore
+  setTimeout(() => resolve(import('./aboutPage')), 1500);
+}));
 
 export default AboutPageAsync;

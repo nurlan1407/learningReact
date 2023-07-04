@@ -6,16 +6,15 @@ import { AppRouter } from 'app/providers/router';
 import { Navbar } from 'widgets/navbar';
 import { Sidebar } from 'widgets/sidebar';
 import 'shared/config/i18-n/i18n';
+import { PageLoader } from 'widgets/pageLoader';
 
 function App() {
   const { theme, toggleTheme } = useTheme();
-  const cls = classNames('app', { hovered: true, selectable: false }, [theme, 'secondadditional']);
   return (
-      <div className={cls}>
-          <Suspense fallback={<div>loading...</div>}>
+      <div className={classNames('app', {}, [theme])}>
+          <Suspense fallback="">
               <Navbar />
               <div className="content-page">
-
                   <Sidebar />
                   <AppRouter />
               </div>

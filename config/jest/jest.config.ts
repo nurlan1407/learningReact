@@ -31,6 +31,7 @@ export default {
   ],
   moduleDirectories: [
     'node_modules',
+    'src',
   ],
 
   // An array of file extensions your modules use
@@ -49,7 +50,10 @@ export default {
     '<rootDir>src/**/*(*.)@(spec|test).[tj]s?(x)',
   ],
   testEnvironment: 'jsdom',
-
+  setupFilesAfterEnv: ['<rootDir>/config/jest/setupTests.ts'],
+  moduleNameMapper: {
+    '\\.s?css$': 'identity-obj-proxy',
+  },
   // Indicates which provider should be used to instrument code for coverage
   // coverageProvider: "babel",
 
@@ -139,7 +143,6 @@ export default {
   // setupFiles: [],
 
   // A list of paths to modules that run some code to configure or set up the testing framework before each test
-  // setupFilesAfterEnv: [],
 
   // The number of seconds after which a test is considered as slow and reported as such in the results.
   // slowTestThreshold: 5,

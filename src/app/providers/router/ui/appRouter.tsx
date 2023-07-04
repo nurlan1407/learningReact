@@ -3,16 +3,25 @@ import { Route, Routes } from 'react-router-dom';
 import { AboutPage } from 'pages/aboutPage';
 import { MainPage } from 'pages/mainPage';
 import { routeConfig } from 'shared/config/routerConfig/routeConfig';
+import { PageLoader } from 'widgets/pageLoader';
 
 function AppRouter() {
   return (
-      <div className="page-wrapper">
-          <Suspense fallback={<div>Loading...</div>}>
-              <Routes>
-                  {Object.values(routeConfig).map(({ element, path }) => <Route path={path} element={element} key={path} />)}
-              </Routes>
-          </Suspense>
-      </div>
+      <Routes>
+          {Object.values(routeConfig).map(({ element, path }) => (
+              <Route
+                key={path}
+                path={path}
+                element={(
+                    <Suspense fallback={<PageLoader />}>
+                        <div className="page-wrapper">
+                            {element}
+                        </div>
+                    </Suspense>
+                  )}
+              />
+          ))}
+      </Routes>
   );
 }
 
